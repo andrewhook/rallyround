@@ -1,0 +1,25 @@
+{
+    "name":"andrewhook/rallyround",
+    "type":"library",
+    "description":"Background processing for PHP applications.",
+    "keywords":["background", "processing", "parallel", "multithreading"],
+    "homepage":"https://github.com/andrewhook/rallyround",
+    "license":"LGPL-3.0",
+    "authors": [
+        {
+            "name": "Andy Hook",
+            "email": "me@andrewhook.uk",
+            "homepage": "https://andrewhook.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "predis/predis": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rallyround\\": "src/",
+            "ExampleApp\\": "examples/app"
+        }
+    }
+}
