@@ -2,44 +2,45 @@
 
 namespace Rallyround\Server;
 
-use Predis\Client as RedisClient;
+use Pool;
+use Rallyround\Storage\StorageContract;
 
 class Processor
 {
-    private $queue;
     private $pool;
+
+    private $storage;
+    
+    private $queue;
 
     private static $autoloads = [];
 
-    public function __construct($queue, $workers = 20)
+    public function __construct(Pool $pool, StorageContract $storage, $queue = 'default')
     {
-        $this->queue = "rallyround:{$queue}";
+        $this->pool = $pool;
 
-        $this->pool = new \Pool($workers, JobWorker::class);
+        $this->storage = $storage;
+
+        $this->queue = "rallyround:{$queue}";
     }
 
-    public function start()
+    public function start($daemonize = true)
     {
-        while(true) {
-            $response = $this->getNextJob();
+        do {
+            $response = $this->storage->getNextJob($this->queue);
             
             while($response !== null) {
                 $job = unserialize($response[1]);
 
                 $this->pool->submit(new JobRunner($job));
 
-                $response = $this->getNextJob();
+                $response = $this->storage->getNextJob($this->queue);
             }
 
             $this->pool->shutdown();
 
             sleep(1);
-        }
-    }
-
-    private function getNextJob()
-    {
-        return (new RedisClient())->executeRaw(['BRPOP', $this->queue, 1]);
+        } while($daemonize);
     }
 
     public static function setAutoloads($autoloads = [])
@@ -50,5 +51,10 @@ class Processor
     public static function getAutoloads()
     {
         return static::$autoloads;
+    }
+
+    public function getQueueName()
+    {
+        return $this->queue;
     }
 }

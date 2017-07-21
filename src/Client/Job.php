@@ -2,13 +2,15 @@
 
 namespace Rallyround\Client;
 
+use Rallyround\Storage\RedisClient;
+
 abstract class Job
 {
     public function run($queue = 'default')
     {
         $queue = "rallyround:{$queue}";
         
-        return Client::instance()->executeRaw(['LPUSH', $queue, serialize($this) ]);
+        return RedisClient::instance()->executeRaw(['LPUSH', $queue, serialize($this) ]);
     }
 
     abstract public function execute();

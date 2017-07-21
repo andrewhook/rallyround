@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace ExampleApp\Jobs;
 
 use Rallyround\Client\Job;
 
