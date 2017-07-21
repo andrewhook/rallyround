@@ -10,12 +10,12 @@ final class RedisClient
 
     public static function instance()
     {
-        static $inst = null;
+        static $instance = null;
      
-        if ($inst === null) {
-            $inst = new Client();
+        if ($instance === null) {
+            $instance = new Client();
         }
      
-        return $inst;
+        return $instance;
     }
 }

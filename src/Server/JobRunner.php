@@ -2,7 +2,8 @@
 
 namespace Rallyround\Server;
 
-class JobRunner extends \Threaded {
+class JobRunner extends \Threaded
+{
     private $job;
 
     public function __construct($job)

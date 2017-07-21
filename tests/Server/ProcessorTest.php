@@ -25,8 +25,8 @@ class ProcessorTest extends TestCase
     {
         $pool = $this->createMock(Pool::class);
         $storage = $this->getMockBuilder(StorageContract::class)
-                         ->setMethods(['getNextJob'])
-                         ->getMock();
+            ->setMethods(['getNextJob'])
+            ->getMock();
 
         $storage->expects($this->once())
             ->method('getNextJob');
@@ -38,19 +38,19 @@ class ProcessorTest extends TestCase
     function it_submits_a_job()
     {
         $pool = $this->getMockBuilder(Pool::class)
-                        ->disableOriginalConstructor()
-                         ->setMethods(['submit'])
-                         ->getMock();
+            ->disableOriginalConstructor()
+            ->setMethods(['submit'])
+            ->getMock();
 
         $storage = $this->createMock(StorageContract::class);
 
         $storage->expects($this->at(0))
-                ->method('getNextJob')
-                ->willReturn(true);
+            ->method('getNextJob')
+            ->willReturn(true);
 
         $storage->expects($this->at(1))
-                ->method('getNextJob')
-                ->willReturn(null);
+            ->method('getNextJob')
+            ->willReturn(null);
 
         $pool->expects($this->once())
             ->method('submit');
@@ -62,9 +62,9 @@ class ProcessorTest extends TestCase
     function it_shuts_the_pool_down()
     {
         $pool = $this->getMockBuilder(Pool::class)
-                        ->disableOriginalConstructor()
-                         ->setMethods(['shutdown'])
-                         ->getMock();
+            ->disableOriginalConstructor()
+            ->setMethods(['shutdown'])
+            ->getMock();
 
         $storage = $this->createMock(StorageContract::class);
 
@@ -77,6 +77,8 @@ class ProcessorTest extends TestCase
     /** @test */
     function it_can_set_autoloads()
     {
-        // Todo
+        Processor::setAutoloads(['vendor/autoload.php']);
+
+        $this->assertEquals(['vendor/autoload.php'], Processor::getAutoloads());
     }
 }
