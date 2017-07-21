@@ -25,7 +25,7 @@ class ProcessorTest extends TestCase
     {
         $pool = $this->createMock(Pool::class);
         $storage = $this->getMockBuilder(StorageContract::class)
-            ->setMethods(['getNextJob'])
+            ->setMethods(['getNextJob', 'enqueueJob'])
             ->getMock();
 
         $storage->expects($this->once())

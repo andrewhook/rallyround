@@ -27,14 +27,12 @@ class Processor
     public function start($daemonize = true)
     {
         do {
-            $response = $this->storage->getNextJob($this->queue);
+            $job = $this->storage->getNextJob($this->queue);
             
-            while($response !== null) {
-                $job = unserialize($response[1]);
-
+            while($job !== null) {
                 $this->pool->submit(new JobRunner($job));
 
-                $response = $this->storage->getNextJob($this->queue);
+                $job = $this->storage->getNextJob($this->queue);
             }
 
             $this->pool->shutdown();

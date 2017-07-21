@@ -6,16 +6,21 @@ use Predis\Client;
 
 final class RedisClient
 {
-    private static $config;
+    private static $config = [];
 
     public static function instance()
     {
         static $instance = null;
      
         if ($instance === null) {
-            $instance = new Client();
+            $instance = new Client(static::$config);
         }
      
         return $instance;
+    }
+
+    public static function setConfig()
+    {
+        static::$config = $config;
     }
 }

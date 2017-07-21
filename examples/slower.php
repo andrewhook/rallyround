@@ -2,56 +2,10 @@
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
-// Optional: specifying custom connection/configuration details
-// Client::setConfiguration([
-//    'username' => 'username',
-    // etc.
-// ]);
+use Rallyround\Client\Client;
 
-(new ExampleApp\Jobs\SlowerTask(10))->run();
-(new ExampleApp\Jobs\SlowerTask(10))->run();
-(new ExampleApp\Jobs\SlowerTask(10))->run();
-(new ExampleApp\Jobs\SlowerTask(10))->run();
-(new ExampleApp\Jobs\SlowerTask(10))->run();
-
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
-// (new ExampleApp\Jobs\SlowerTask(10))->run();
+Client::submit(new ExampleApp\Jobs\SlowerTask(10));
+Client::submit(new ExampleApp\Jobs\SlowerTask(10));
+Client::submit(new ExampleApp\Jobs\SlowerTask(10));
+Client::submit(new ExampleApp\Jobs\SlowerTask(10));
+Client::submit(new ExampleApp\Jobs\SlowerTask(10));
